@@ -14,13 +14,9 @@ import {
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Header from '@/components/shared/header'
-import ConnectionsList from '@/components/connections/connections-list';
-import ConnectionsEmpty from '@/components/connections/connections-empty';
-import ConnectionsSubheader from '@/components/connections/connections-subheader';
-import UsersList from '@/components/users/users-list';
-import UsersInvitesList from '@/components/users/users-invites-list';
-import UsersEmpty from '@/components/users/users-empty';
-import InviteUser from '@/components/invite/invite';
+import RolesSubheader from '@/components/roles/roles-subheader';
+import RolesEmpty from '@/components/roles/roles-empty';
+import RolesList from '@/components/roles/roles-list';
 
 const navigation = [
   { name: 'Business', href: '#', icon: FolderIcon, current: true },
@@ -43,41 +39,53 @@ const secondaryNavigation = [
   { name: 'Integrations', href: '#', current: false },
 ]
 
-function classNames(...classes: any) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Invite() {
+export default function Connections( ) {
+
 
   const ctx = {
     org: 'Orgx'
   }
+
 
   return (
     <>
 
       <div style={{ maxWidth: '1000px' }} className="z-10 w-full max-w-xl px-5 xl:px-0 p-12">
 
-        <div className="animate-fade-up space-y-10 divide-y divide-gray-900/10">
-          <Header
-            heading="Invite a new member"
+        <div className=" space-y-10 divide-y divide-gray-900/10">
+          <Header className="animate-fade-up"
+            heading="Your Roles"
+            description="Create and manage Roles for your applications. Roles contain collections of Permissions and can be assigned to Users."
             crumbs={[{
               title: ctx.org,
               href: '#',
               current: false
-            }, {
-              title: 'Users',
-              href: '/users',
-              current: false
-            }, {
-              title: 'Invite',
-              href: '/invite',
+            },{
+              title: 'Roles',
+              href: '/roles',
               current: true
             }]}
           />
 
-          <InviteUser />
+          <div className="animate-fade-up  grid-cols-1 gap-x-8 gap-y-8 ">
+            {/* <RolesSubheader heading="Database Connections" subheading="Username/Email & Password" /> */}
+            <RolesEmpty />
 
+          </div>
+
+
+          <div className="animate-fade-up  grid-cols-1 gap-x-8 gap-y-8 ">
+
+            {/* <RolesSubheader heading="Social Connections" subheading="Enterprise" /> */}
+            {/* <RolesList /> */}
+            {/* <RolesEmpty /> */}
+
+
+          </div>
 
         </div>
       </div>

@@ -179,7 +179,7 @@ export default async function Home() {
                 target="_top"
                 rel="noopener noreferrer"
               >
-                <p>Get Started</p>
+                <p>Continue</p>
               </a>
 
 

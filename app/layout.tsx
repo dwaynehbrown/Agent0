@@ -8,9 +8,10 @@ import { Suspense } from "react";
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export const metadata = {
-  title: "Precedent - Building blocks for your Next.js project",
+  title: "Agent0 - Open Source Delegated Admin for Auth0",
   description:
-    "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
+    "Let your customers manage their Organisations, Connections, login experience, user memberships, roles and much more.",
+  // TODO
   twitter: {
     card: "summary_large_image",
     title: "Precedent - Building blocks for your Next.js project",

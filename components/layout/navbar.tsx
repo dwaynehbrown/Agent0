@@ -24,12 +24,18 @@ export default function NavBar( session : any ) {
   const pathname = usePathname ();
 
 
+
+const isActivePath = (path: any) => {
+  return (path == pathname.split('/')[1].toLowerCase());
+
+}
+
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', current: true },
-  { name: 'Business', href: '/business', current: false },
-  { name: 'Connections', href: '/connections', current: false },
-  { name: 'Roles', href: '/roles', current: false },
-  { name: 'Users', href: '/users', current: false },
+  { name: 'Dashboard', href: '/dashboard', current: isActivePath('dashboard') },
+  { name: 'Business', href: '/business', current:  isActivePath('business') },
+  { name: 'Connections', href: '/connections', current:  isActivePath('connections') },
+  // { name: 'Roles', href: '/roles', current:  isActivePath('roles') },
+  { name: 'Users', href: '/users', current:  isActivePath('users') },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },

@@ -43,7 +43,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Connections() {
+export default function Connections( ) {
+
+
+  const ctx = {
+    org: 'Orgx'
+  }
+
 
   return (
     <>
@@ -54,6 +60,10 @@ export default function Connections() {
           <Header className="animate-fade-up"
             heading="Your Connections"
             crumbs={[{
+              title: ctx.org,
+              href: '#',
+              current: false
+            },{
               title: 'Connections',
               href: '/connections',
               current: true

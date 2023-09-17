@@ -158,13 +158,13 @@ const items = [
     background: 'bg-yellow-500',
     href: "/connections"
   },
-  {
-    title: 'Manage your user roles',
-    description: 'Define your RBAC model',
-    icon: PhotoIcon,
-    background: 'bg-green-500',
-    href: "/roles"
-  },
+  // {
+  //   title: 'Manage your user roles',
+  //   description: 'Define your RBAC model',
+  //   icon: PhotoIcon,
+  //   background: 'bg-green-500',
+  //   href: "/roles"
+  // },
   {
     title: 'Invite & Manage your users',
     description: 'Provision, update and reset user accounts',
