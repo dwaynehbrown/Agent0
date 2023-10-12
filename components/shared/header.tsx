@@ -12,12 +12,13 @@ import {
 } from '@heroicons/react/20/solid'
 import { Menu, Transition } from '@headlessui/react'
 import { HomeIcon } from '@heroicons/react/20/solid'
+import { userAgentFromString } from 'next/server'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header({ crumbs, heading }: { crumbs: any, heading: string }) {
+export default function Header({ crumbs, heading, userOrg }: { crumbs: any, heading: string, userOrg: any }) {
   return (
     <div className="lg:flex lg:items-center lg:justify-between">
       <div className="min-w-0 flex-1">
@@ -53,9 +54,9 @@ export default function Header({ crumbs, heading }: { crumbs: any, heading: stri
                 </a>
               </div>
             </li>
-            {crumbs.map((crumb: any) => (
+            {crumbs.map((crumb: any, i: any) => (
               <li key={crumb?.title} className="flex">
-                <div className="flex items-center">
+                <div className="flex items-center" >
                   <svg
                     className="h-full w-6 flex-shrink-0 text-gray-200"
                     viewBox="0 0 24 44"
@@ -68,9 +69,10 @@ export default function Header({ crumbs, heading }: { crumbs: any, heading: stri
                   <a
                     href={crumb.href}
                     className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                    style={{color: (i == 0) ? userOrg?.branding?.colors?.primary : 'black'}}
                     aria-current={crumb.current ? 'page' : undefined}
                   >
-                    {crumb.title}
+                    {crumb.title} 
                   </a>
                 </div>
               </li>

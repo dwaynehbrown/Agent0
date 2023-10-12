@@ -49,7 +49,7 @@ export default async function Business() {
 
   const token = await getAccessToken();
 
-  let userOrgs = [];
+  let userOrg = {};
 
   if (!user) {
 
@@ -57,19 +57,21 @@ export default async function Business() {
 
   } else {
 
+    console.log (user);
+
     try {
 
       const token = await getAccessToken();
  
       if (token?.accessToken) {
-        let getUserOrgs = await axios.get('http://localhost:3000/api/organisation/', {
+        let getUserOrg = await axios.get('http://localhost:3000/api/organisation/', {
           headers: {
             authorization: 'Bearer ' + token?.accessToken
           }
         })
 
-        // console.log ('got user orgs ',JSON.stringify( getUserOrgs.data));
-        console.log(userOrgs = [...getUserOrgs.data]);
+        // console.log ('got user orgs ',JSON.stringify( getUserOrg.data));
+        console.log(userOrg = {...getUserOrg.data});
 
       }
     } catch (e) {
@@ -77,9 +79,9 @@ export default async function Business() {
     }
 
   }
-
+ 
   const ctx = {
-    org: 'Orgx'
+    org: userOrg?.display_name || 'Orgx'
   }
 
   return (
@@ -90,6 +92,7 @@ export default async function Business() {
         <div className=" space-y-10 divide-y divide-gray-900/10">
           <Header className="animate-fade-up"
             heading="Your Business"
+            userOrg={userOrg}
             crumbs={[
               {
                 title: ctx.org,
@@ -121,13 +124,14 @@ export default async function Business() {
                     </label>
                     <div className="mt-2">
                       <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">http://</span>
+                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">&nbsp;</span>
                         <input
                           type="text"
                           name="Name"
                           id="Name"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="www.example.com"
+                          value={userOrg?.name}
                         />
                       </div>
                     </div>
@@ -135,17 +139,18 @@ export default async function Business() {
 
                   <div className="sm:col-span-4">
                     <label htmlFor="DisplayName" className="block text-sm font-medium leading-6 text-gray-900">
-                      Display Nam
+                      Display Name
                     </label>
                     <div className="mt-2">
                       <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">http://</span>
+                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">&nbsp;</span>
                         <input
                           type="text"
                           name="DisplayName"
                           id="DisplayName"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="www.example.com"
+                          value={userOrg?.display_name}
                         />
                       </div>
                     </div>
@@ -181,7 +186,7 @@ export default async function Business() {
                       Logo
                     </label>
                     <div className="mt-2 flex items-center gap-x-3">
-                      <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true" />
+                      <img className="h-12 w-12 text-gray-300" src={userOrg.branding.logo_url} aria-hidden="true" />
                       <button
                         type="button"
                         className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -200,6 +205,7 @@ export default async function Business() {
                         type="text"
                         name="primary-colour"
                         id="primary-colour"
+                        value={userOrg?.branding?.colors?.primary}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -207,13 +213,14 @@ export default async function Business() {
 
                   <div className="sm:col-span-4">
                     <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                      Secondary Colour
+                      Page Background
                     </label>
                     <div className="mt-2">
                       <input
                         id="secondary-colour"
                         name="secondary-colour"
                         type="text"
+                        value={userOrg?.branding?.colors?.page_background}
                         autoComplete="email"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
