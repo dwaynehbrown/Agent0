@@ -145,7 +145,7 @@ export default withPageAuthRequired(async function Dashboard() {
           </ul>
           <div className="mt-4 flex">
             <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-              You also have access to the following Organisations
+            <p>{user.sub}</p>
               <span aria-hidden="true"> &rarr;</span>
             </a>
 

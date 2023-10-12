@@ -8,6 +8,7 @@ import Image from "next/image";
 import { nFormatter } from "@/lib/utils";
 
 import { getSession } from '@auth0/nextjs-auth0';
+import Changelog from "./changelog/page";
 
 export default async function Home() {
 
@@ -44,35 +45,35 @@ export default async function Home() {
       demo: <WebVitals value={100} />,
     }];
 
-  return (
-    <>
-      {!user && (<>
-        <div className="z-10 w-full max-w-xl px-5 xl:px-0">
+return (
+  <>
+    {!user && (<>
+      <div className="z-10 w-full max-w-xl px-5 xl:px-0">
 
-          <a
-            href="https://twitter.com/steventey/status/1613928948915920896"
-            target="_blank"
-            rel="noreferrer"
-            className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
-          >
+        <a
+          href="https://twitter.com/steventey/status/1613928948915920896"
+          target="_blank"
+          rel="noreferrer"
+          className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
+        >
 
-            Introducing Agent0
-          </a>
-          <h1
-            className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
-            style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-          >
-            <Balancer>Open Source Delegated Admin for Auth0</Balancer>
-          </h1>
-          <p
-            className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 md:text-xl"
-            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-          >
-            <Balancer>
-              Let your customers manage their own identities all by themselves.
-            </Balancer>
-          </p>
-          {/* <div
+          Introducing Agent0
+        </a>
+        <h1
+          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
+          style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+        >
+          <Balancer>Open Source Delegated Admin for Auth0</Balancer>
+        </h1>
+        <p
+          className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 md:text-xl"
+          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+        >
+          <Balancer>
+            Let your customers manage their own identities all by themselves.
+          </Balancer>
+        </p>
+        {/* <div
             className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
             style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
           >
@@ -111,83 +112,88 @@ export default async function Home() {
               </p>
             </a>
           </div> */}
-        </div>
+      </div>
 
-        <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
-          {features.map(({ title, description, demo, large }) => (
-            <Card
-              key={title}
-              title={title}
-              description={description}
-              demo={
-                title === "Beautiful, reusable components" ? (
-                  <a href={DEPLOY_URL}>
-                    <Image
-                      src="/auth0.png"
-                      alt="Auth0 logo"
-                      width={120}
-                      height={30}
-                      unoptimized
-                    />
-                  </a>
-                ) : (
-                  demo
-                )
-              }
-              large={large}
-            />
-          ))}
-        </div>
-
-      </>)}
+      <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
+        {features.map(({ title, description, demo, large }) => (
+          <Card
+            key={title}
+            title={title}
+            description={description}
+            demo={
+              title === "Beautiful, reusable components" ? (
+                <a href={DEPLOY_URL}>
+                  <Image
+                    src="/auth0.png"
+                    alt="Auth0 logo"
+                    width={120}
+                    height={30}
+                    unoptimized
+                  />
+                </a>
+              ) : (
+                demo
+              )
+            }
+            large={large}
+          />
+        ))}
 
 
-      {
-        user && <>
-          <div className="z-10 w-full max-w-xl px-5 xl:px-0">
 
+
+      </div>
+      <Changelog />
+
+    </>)}
+
+
+    {
+      user && <>
+        <div className="z-10 w-full max-w-xl px-5 xl:px-0">
+      
+          <a
+            href="https://twitter.com/steventey/status/1613928948915920896"
+            target="_blank"
+            rel="noreferrer"
+            className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
+          >
+            <Balancer className="text-[#1d9bf0]">Open Source Delegated Admin for Auth0</Balancer>
+
+          </a>
+          <h1
+            className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+          >
+            Welcome to  Agent0
+          </h1>
+          <p
+            className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 md:text-xl"
+            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+          >
+            <Balancer>
+              Let your customers manage their Organisations, Connections, login experience, user memberships, roles and much more.
+            </Balancer>
+          </p>
+          <div
+            className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
+            style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
+          >
             <a
-              href="https://twitter.com/steventey/status/1613928948915920896"
-              target="_blank"
-              rel="noreferrer"
-              className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
+              className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-green-500 bg-green-500 px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+              href="/dashboard"
+              target="_top"
+              rel="noopener noreferrer"
             >
-              <Balancer className="text-[#1d9bf0]">Open Source Delegated Admin for Auth0</Balancer>
-
+              <p>Continue</p>
             </a>
-            <h1
-              className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
-              style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-            >
-              Welcome to  Agent0
-            </h1>
-            <p
-              className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 md:text-xl"
-              style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-            >
-              <Balancer>
-                Let your customers manage their Organisations, Connections, login experience, user memberships, roles and much more.
-              </Balancer>
-            </p>
-            <div
-              className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
-              style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
-            >
-              <a
-                className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-green-500 bg-green-500 px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-                href="/dashboard"
-                target="_top"
-                rel="noopener noreferrer"
-              >
-                <p>Continue</p>
-              </a>
 
 
-            </div>
           </div>
-        </>
-      }
-    </>
-  );
+        </div>
+      </>
+    }
+  </>
+);
 
 }

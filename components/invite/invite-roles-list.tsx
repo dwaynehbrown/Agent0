@@ -15,7 +15,7 @@ const people = [
     { name: 'Emil Schaefer', username: '@emilschaefer' },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
 }
 
