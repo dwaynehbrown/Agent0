@@ -1,14 +1,20 @@
 
 import { NextResponse } from "next/server";
-var axios = require("axios");
+const axios = require("axios");
 
 export async function GET(
   req,
   res
 ) {
 
-  /////////
+  const jwt = require('jsonwebtoken');
+  console.log('-----------------------------')
+  let userSub = jwt.decode(req?.headers.get('authorization').split(" ")[1]).sub;
+  console.log('user/oranisations ', userSub);
 
+  console.log(req?.headers.get('authorization'));
+
+  // get management token
   var options = {
     method: 'POST',
     url: 'https://db-prospect-adhoc.eu.auth0.com/oauth/token',
@@ -21,51 +27,22 @@ export async function GET(
     }
   };
 
-  let resp = {};
-
-  var jwt = require('jsonwebtoken');
-  var jwksClient = require('jwks-rsa');
-  var client = jwksClient({
-    jwksUri: 'https://db-prospect-adhoc.eu.auth0.com/.well-known/jwks.json'
-  });
-
-  function getKey(header, callback){
-    client.getSigningKey(header.kid, function(err, key) {
-      var signingKey = key.publicKey || key.rsaPublicKey;
-      callback(null, signingKey);
-    });
-  }
-
-  axios.post(options.url,
+  let m2m = await axios.post(options.url,
     options.body
   )
-    .then(resp =>
-      // console.log(resp))
 
-    console.log(
-      jwt.verify(resp.data.access_token)
-    )
-  
-    
-    // jwt.verify(resp.data.access_token, getKey, options, function(err, decoded) {
-    //   console.log('test ', decoded.foo) // bar
-    // })
+  let a0MagementToken = m2m.data?.access_token;
 
+  let userOrgs = await axios.get(`https://db-prospect-adhoc.eu.auth0.com/api/v2/users/${userSub}/organizations`, {
+    headers: {
+      authorization: `Bearer ${a0MagementToken}`
+    }
+  });
 
+  return NextResponse.json(
+    userOrgs.data, { status: 200 }
+  )
 
-
-    // )
-
-    // console.log (parseJwt(resp.data.access_token)))
-
-  // axios.get ('https://db-prospect-adhoc.eu.auth0.com/users/id/organisations')
-  //  .then (resp => {
-  //   console.log('fyfjtdckyrxkyrd');
-  //  })
-  //  .then (resp => {}))
-
-  // NextResponse.json({ ...resp  }, { status: 200 }))
-  //   .catch (err => console.log (err))
-
-    )
 }
+
+

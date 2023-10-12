@@ -4,6 +4,8 @@ import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
 import Image from "next/image";
 
+import { LoadingDots, Google } from "@/components/shared/icons";
+
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { getSession, getAccessToken } from '@auth0/nextjs-auth0';
 
@@ -14,25 +16,14 @@ import {
   PhotoIcon,
   TableCellsIcon,
   ViewColumnsIcon,
+  ArrowPathIcon
 } from '@heroicons/react/24/outline'
 import OrgsMiniList from "@/components/dashboard/orgs-mini-list";
 import { access } from "fs";
+import axios from "axios";
 
 
 export default withPageAuthRequired(async function Dashboard() {
-
-  async function getData() {
-    const res = await fetch('/api/users/organisations')
-
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data')
-    }
-
-    console(' res res ', res);
-
-    return res.json()
-  }
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -40,27 +31,37 @@ export default withPageAuthRequired(async function Dashboard() {
   let userOrgs = [];
 
   const { user } = await getSession();
+
+  let showOrgsMini = false; 
+
   if (!user) {
+
     console.log('no session');
+
   } else {
 
     try {
-      let token = await getAccessToken();
-      if (token.accessToken) {
-        const userOrgs = await fetch('http://localhost:3000/api/user/organisations/', {
+
+      const token = await getAccessToken();
+
+      if (token?.accessToken) {
+        let getUserOrgs = await axios.get('http://localhost:3000/api/user/organisations/', {
           headers: {
-            authorization: 'Bearer ' + accessToken
+            authorization: 'Bearer ' + token?.accessToken
           }
         })
+         
+        showOrgsMini = true;
+
+        console.log ('got user orgs ',JSON.stringify( getUserOrgs.data));
+        userOrgs = [...getUserOrgs.data];
+
       }
     } catch (e) {
       console.log(e);
     }
 
-
   }
-
-
 
   return (
     <>
@@ -151,7 +152,18 @@ export default withPageAuthRequired(async function Dashboard() {
 
           </div>
           <div className="mt-4 flex">
-            <OrgsMiniList userOrgs={userOrgs} />
+
+          {
+            ! showOrgsMini && <>
+              
+              <LoadingDots color="#808080" />
+            </>
+          }
+          {
+            showOrgsMini && <OrgsMiniList orgs={userOrgs} />
+          }
+
+
           </div>
         </div>
 
