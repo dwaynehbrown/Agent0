@@ -45,14 +45,14 @@ const OrgSwitchModal = ({
                             } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
                         onClick={() => {
                             setSignInClicked(true);
-                            window.location.href = "/dashboard";
+                            window.location.href = `/api/auth/login?org=${focusOrgSwitchModal?.id}`;
                         }}
                     >
                         {signInClicked ? (
                             <LoadingDots color="#808080" />
                         ) : (
                             <>
-                                <p >continue with {focusOrgSwitchModal?.display_name}</p>
+                                <p>continue with {focusOrgSwitchModal?.display_name}</p>
                             </>
                         )}
                     </button>

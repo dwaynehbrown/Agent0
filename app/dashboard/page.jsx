@@ -21,8 +21,6 @@ import {
 import OrgsMiniList from "@/components/dashboard/orgs-mini-list";
 import { access } from "fs";
 import axios from "axios";
-
-
 export default withPageAuthRequired(async function Dashboard() {
 
   function classNames(...classes) {
@@ -53,7 +51,7 @@ export default withPageAuthRequired(async function Dashboard() {
          
         showOrgsMini = true;
 
-        console.log ('got user orgs ',JSON.stringify( getUserOrgs.data));
+        // console.log ('got user orgs ',JSON.stringify( getUserOrgs.data));
         userOrgs = [...getUserOrgs.data];
 
       }
@@ -95,7 +93,7 @@ export default withPageAuthRequired(async function Dashboard() {
               <span className="font-semibold">&nbsp;Get help</span> */}
 
               <span className="hidden sm:inline-block">You are currently managing</span>
-              <span className="font-semibold">&nbsp;Orgx</span>
+              <span className="font-semibold">&nbsp;{userOrgs && userOrgs.filter((org) => org.id == user?.org_id)[0]?.display_name }</span>
 
             </p>
           </a>
@@ -160,15 +158,12 @@ export default withPageAuthRequired(async function Dashboard() {
             </>
           }
           {
-            showOrgsMini && <OrgsMiniList orgs={userOrgs} />
+            showOrgsMini && <OrgsMiniList orgs={userOrgs.filter(org => org.id != user.org_id)} />
           }
 
 
           </div>
         </div>
-
-
-
 
       </div>
     </>

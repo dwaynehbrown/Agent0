@@ -1,6 +1,6 @@
 'use client';
 
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { ArrowRightOnRectangleIcon, EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 
 import { useOrgSwitchModal } from "../../components/layout/org-switch-modal";
 
@@ -27,8 +27,8 @@ export default function OrgsMiniList(userOrgs: any) {
 
           <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {userOrgs && userOrgs.orgs.length > 0 && userOrgs?.orgs?.map((org: any) => (
-              <li key={org?.display_name} className="col-span-1 flex rounded-md shadow-sm" style={{ background: org?.branding?.colors?.primary }}>
-                <div onClick={() => {setShowOrgSwitchModal(true); setFocusOrgSwitchModal(org)}}
+              <li key={org?.display_name} className="col-span-1 flex rounded-md shadow-sm" onClick={() => {setShowOrgSwitchModal(true); setFocusOrgSwitchModal(org)}} >
+                <div 
 
                   className={classNames(
                     'flex w-16 flex-shrink-0 items-center justify-center rounded-l-md text-sm font-medium text-white'
@@ -49,7 +49,7 @@ export default function OrgsMiniList(userOrgs: any) {
                       className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       <span className="sr-only">Open options</span>
-                      <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+                      <ArrowRightOnRectangleIcon className="h-5 w-5" aria-hidden="true" style={{ color: org?.branding?.colors?.primary }}/>
                     </button>
                   </div>
                 </div>

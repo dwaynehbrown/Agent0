@@ -10,10 +10,7 @@ export async function GET(
   const jwt = require('jsonwebtoken');
   console.log('-----------------------------')
   let userSub = jwt.decode(req?.headers.get('authorization').split(" ")[1]).sub;
-  // console.log('user/oranisations ', userSub);
-
-  // console.log(req?.headers.get('authorization'));
-
+  
   // get management token
   var options = {
     method: 'POST',

@@ -1,4 +1,3 @@
-"use client";
 import {
   ChartBarSquareIcon,
   Cog6ToothIcon,
@@ -10,10 +9,13 @@ import {
 } from '@heroicons/react/24/outline'
 
 
+import { getSession, getAccessToken } from '@auth0/nextjs-auth0';
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Header from '@/components/shared/header'
+
+import axios from "axios";
 
 const navigation = [
   { name: 'Business', href: '#', icon: FolderIcon, current: true },
@@ -40,12 +42,46 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Business() {
-  
+export default async function Business() {
+
+
+  const { user } = await getSession();
+
+  const token = await getAccessToken();
+
+  let userOrgs = [];
+
+  if (!user) {
+
+    console.log('no session');
+
+  } else {
+
+    try {
+
+      const token = await getAccessToken();
+ 
+      if (token?.accessToken) {
+        let getUserOrgs = await axios.get('http://localhost:3000/api/organisation/', {
+          headers: {
+            authorization: 'Bearer ' + token?.accessToken
+          }
+        })
+
+        // console.log ('got user orgs ',JSON.stringify( getUserOrgs.data));
+        console.log(userOrgs = [...getUserOrgs.data]);
+
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
+
   const ctx = {
     org: 'Orgx'
   }
-  
+
   return (
     <>
 
@@ -59,16 +95,16 @@ export default function Business() {
                 title: ctx.org,
                 href: '#',
                 current: false
-              },{
-              title: 'Your Business',
-              href: '/business',
-              current: true
-            }]}
-             />
+              }, {
+                title: 'Your Business',
+                href: '/business',
+                current: true
+              }]}
+          />
           <div className="animate-fade-up grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
-            
+
             <div className="px-4 sm:px-0">
-<br />
+              <br />
 
               <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -140,7 +176,7 @@ export default function Business() {
             <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
               <div className="px-4 py-6 sm:p-8">
                 <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="col-span-full">
+                  <div className="col-span-full">
                     <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
                       Logo
                     </label>
@@ -201,7 +237,7 @@ export default function Business() {
             </form>
           </div>
 
-      
+
         </div>
       </div>
     </>
