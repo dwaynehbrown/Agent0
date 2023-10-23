@@ -9,11 +9,8 @@ export async function GET(
 
   const jwt = require('jsonwebtoken');
   console.log('-----------------------------')
-  let userSub = jwt.decode(req?.headers.get('authorization').split(" ")[1]).sub;
-  // console.log('user/oranisations ', userSub);
-
-  // console.log(req?.headers.get('authorization'));
-
+  let org_id = jwt.decode(req?.headers.get('authorization').split(" ")[1]).org_id;
+  
   // get management token
   var options = {
     method: 'POST',
@@ -33,14 +30,14 @@ export async function GET(
 
   let a0MagementToken = m2m.data?.access_token;
 
-  let userOrgs = await axios.get(`https://db-prospect-adhoc.eu.auth0.com/api/v2/users/${userSub}/organizations`, {
+  let userOrg = await axios.get(`https://db-prospect-adhoc.eu.auth0.com/api/v2/organizations/${org_id}/enabled_connections`, {
     headers: {
       authorization: `Bearer ${a0MagementToken}`
     }
   });
-
+  
   return NextResponse.json(
-    userOrgs.data, { status: 200 }
+    userOrg.data, { status: 200 }
   )
 
 }

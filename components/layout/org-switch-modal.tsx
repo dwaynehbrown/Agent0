@@ -37,7 +37,7 @@ const OrgSwitchModal = ({
 
                 <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
                     <button
-                    style={{ background: focusOrgSwitchModal?.branding?.colors?.primary }}
+                    style={{ background: focusOrgSwitchModal?.branding?.colors?.primary || 'gray'}}
                         disabled={signInClicked}
                         className={`${signInClicked
                                 ? "cursor-not-allowed border-gray-200 bg-gray-100"
