@@ -17,36 +17,36 @@ function classNames(...classes) {
 
 export default async function Connections() {
 
-  const { user } = await getSession();
+  // const { user } = await getSession();
 
-  if (!user) {
+  // if (!user) {
 
-    console.log('no session');
+  //   console.log('no session');
 
-  } else {
+  // } else {
 
-    console.log(user);
+  //   console.log(user);
 
-    try {
+  //   try {
 
-      const token = await getAccessToken();
+  //     const token = await getAccessToken();
 
-      if (token?.accessToken) {
-        let getUserOrg = await axios.get('http://localhost:3000/api/organisation/', {
-          headers: {
-            authorization: 'Bearer ' + token?.accessToken
-          }
-        })
+  //     if (token?.accessToken) {
+  //       let getUserOrg = await axios.get('http://localhost:3000/api/organisation/', {
+  //         headers: {
+  //           authorization: 'Bearer ' + token?.accessToken
+  //         }
+  //       })
 
-        // console.log ('got user orgs ',JSON.stringify( getUserOrg.data));
-        console.log(userOrg = { ...getUserOrg.data });
+  //       // console.log ('got user orgs ',JSON.stringify( getUserOrg.data));
+  //       console.log(userOrg = { ...getUserOrg.data });
 
-      }
-    } catch (e) {
-      console.log(e);
-    }
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
 
-  }
+  // }
 
   const ctx = {
     org: user?.org_name || 'Orgx'
