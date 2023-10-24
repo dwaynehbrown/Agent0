@@ -1,8 +1,12 @@
+import dynamic from "next/dynamic";
+import React from 'react';
 import Navbar from "./navbar";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+const NoSSRWrapper = (props : any)  => (
+  <React.Fragment>{props.children}</React.Fragment>
+);
 
 export default async function Nav() {
-  const session = await getServerSession(authOptions);
-  return <Navbar session={session} />;
+
+  return <Navbar session={{}} />
 }
