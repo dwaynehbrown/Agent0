@@ -60,6 +60,7 @@ export default function Invite() {
 
         <div className="animate-fade-up space-y-10 divide-y divide-gray-900/10">
           <Header
+          userOrg={ctx.org}
             heading="Invite a new member"
             crumbs={[{
               title: ctx.org,
