@@ -8,10 +8,9 @@ import { Suspense } from "react";
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export const metadata = {
-  title: "Agent0 - Open Source Delegated Admin for Auth0",
+  title: "Precedent - Building blocks for your Next.js project",
   description:
-    "Let your customers manage their Organisations, Connections, login experience, user memberships, roles and much more.",
-  // TODO
+    "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
   twitter: {
     card: "summary_large_image",
     title: "Precedent - Building blocks for your Next.js project",
@@ -23,7 +22,7 @@ export const metadata = {
   themeColor: "#FFF",
 };
 
-export default async function RootLayout({
+export default async function PlainLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -32,14 +31,14 @@ export default async function RootLayout({
     <html lang="en">
       <UserProvider>
       <body className={cx(sfPro.variable, inter.variable)}>
-        <div className="fixed w-full bg-gradient-to-br from-white via-blue-100 to-white" />
-        {/* <div className="fixed h-screen w-full bg-gradient-to-br from-white via-blue-100 to-white" /> */}
+        <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
         <Suspense fallback="...">
           {/* @ts-expect-error Server Component */}
           <Nav />
         </Suspense>
-        <main className="flex min-h-screen w-full flex-col items-center justify-center">
-                {children}
+        <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+            DEFAULT LAYOUT
+          {children}
         </main>
         <Footer />
       </body>

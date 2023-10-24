@@ -33,9 +33,9 @@ const SignInModal = ({
           </a>
           <h3 className="font-display text-2xl font-bold">Sign In</h3>
           <p className="text-sm text-gray-500">
-            Do not forget to update your config to point to your Auth0 tenant.
+            This is strictly for demo purposes - only your email and profile
+            picture will be stored.
           </p>
-          <p>In this sample you will be prompted to choose an organisation if you have been assigned to one. If you have not been assigned to an Organisation you will have the option to create one.</p>
         </div>
 
         <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
@@ -48,7 +48,7 @@ const SignInModal = ({
             } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
             onClick={() => {
               setSignInClicked(true);
-              window.location.href="/dashboard";
+              window.location.href="/api/auth/login";
             }}
           >
             {signInClicked ? (
