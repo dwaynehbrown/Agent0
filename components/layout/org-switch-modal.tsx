@@ -16,7 +16,7 @@ const OrgSwitchModal = ({
     setFocusOrgSwitchModal
 }: {
     showOrgSwitchModal: boolean;
-    focusOrgSwitchModal?: object;
+    focusOrgSwitchModal?: any;
     setShowOrgSwitchModal: Dispatch<SetStateAction<boolean>>;
     setFocusOrgSwitchModal: Dispatch<SetStateAction<object>>;
 }) => {
