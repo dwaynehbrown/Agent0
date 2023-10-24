@@ -1,14 +1,10 @@
 
 import { NextResponse } from "next/server";
-import type { NextApiRequest, NextApiResponse } from 'next'
 
-type ResponseData = {
-  message: string
-}
 
 export async function GET(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
+  req,
+  res
 ) {
 
   console.log (' get user orgs' );
