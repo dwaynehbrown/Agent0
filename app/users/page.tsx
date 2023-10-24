@@ -76,7 +76,6 @@ export default function Connections() {
 
           <UsersList />
 
-
         </div>
       </div>
     </>
