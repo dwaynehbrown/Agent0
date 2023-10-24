@@ -59,6 +59,7 @@ export default function Connections() {
 
         <div className="animate-fade-up space-y-10 divide-y divide-gray-900/10">
           <Header
+          userOrg={ctx.org}
             heading="Your Users"
             crumbs={[{
               title: ctx.org,
