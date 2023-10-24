@@ -17,12 +17,12 @@ export async function GET(
   // get management token
   var options = {
     method: 'POST',
-    url: 'https://db-prospect-adhoc.eu.auth0.com/oauth/token',
+    url: `${process.env.AUTH0_ISSUER_BASE_URL}/oauth/token`,
     headers: { 'content-type': 'application/json' },
     body: {
-      "client_id": "9qbQAVQJXH1DG0PMo7eDoTd08VwsHuIO",
-      "client_secret": "RTwt_8l2X-iBwV88eUj0sJ4FKUlyLgjGvVFbj0JpDLwC3SFeHfb7jjtqSMREFT_F",
-      "audience": "https://db-prospect-adhoc.eu.auth0.com/api/v2/",
+      "client_id": process.env.AUTH0_M2M_CLIENT_ID,
+      "client_secret": process.env.AUTH0_M2M_CLIENT_SECRET,
+      "audience": process.env.AUTH0_ISSUER_BASE_URL +  "/api/v2/",
       "grant_type": "client_credentials"
     }
   };
@@ -33,7 +33,7 @@ export async function GET(
 
   let a0MagementToken = m2m.data?.access_token;
 
-  let userOrgs = await axios.get(`https://db-prospect-adhoc.eu.auth0.com/api/v2/users/${userSub}/organizations`, {
+  let userOrgs = await axios.get(`${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/users/${userSub}/organizations`, {
     headers: {
       authorization: `Bearer ${a0MagementToken}`
     }

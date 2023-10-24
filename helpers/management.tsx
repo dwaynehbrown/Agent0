@@ -1,11 +1,11 @@
 
 import axios from "axios";
 
-const domain = "db-prospect-adhoc.eu.auth0.com",
-baseURL = "https://" + domain,
+const domain = process.env.AUTH0_ISSUER_BASE_URL,
+baseURL =  domain,
 api = '/api/v2',
-client_id = '9qbQAVQJXH1DG0PMo7eDoTd08VwsHuIO',
-client_secret = 'RTwt_8l2X-iBwV88eUj0sJ4FKUlyLgjGvVFbj0JpDLwC3SFeHfb7jjtqSMREFT_F';
+client_id = process.env.AUTH0_M2M_CLIENT_ID,
+client_secret = process.env.AUTH0_M2M_CLIENT_SECRET;
 
 const Auth0ManagementApi = {
 

@@ -13,7 +13,6 @@
 //     }
 // });
 
-
 import { handleAuth, handleLogin } from '@auth0/nextjs-auth0';
 
 export const GET = handleAuth({
@@ -22,7 +21,7 @@ export const GET = handleAuth({
                 const org = searchParams.get('org') 
 
                 let authorizationParams: {audience?: any, organization?: any} = {};
-                authorizationParams.audience="https://agent0";
+                authorizationParams.audience=process.env.AUTH0_AUDIENCE;
                 if (org && org.indexOf ('org_') > -1) authorizationParams.organization = org;
 
                  console.log('sp ---- ', searchParams);
