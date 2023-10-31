@@ -42,6 +42,8 @@ export default withPageAuthRequired(async function Dashboard() {
 
       const token = await getAccessToken();
 
+      console.log('fe ', token.accessToken)
+
       if (token?.accessToken) {
         let getUserOrgs = await axios.get('http://localhost:3000/api/user/organisations/', {
           headers: {
@@ -148,10 +150,12 @@ export default withPageAuthRequired(async function Dashboard() {
           }
 
           <div className="mt-4 flex">
-            <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-              You also have access to the following Organisations
-              <span aria-hidden="true"> &rarr;</span>
-            </a>
+            {(userOrgs && userOrgs.length > 0)  && <>
+              <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                You also have access to the following Organisations
+                <span aria-hidden="true"> &rarr;</span>
+              </a>
+            </>}
 
           </div>
           <div className="mt-4 flex">
@@ -163,7 +167,7 @@ export default withPageAuthRequired(async function Dashboard() {
               </>
             }
             {
-              showOrgsMini && <OrgsMiniList orgs={userOrgs.filter(org => org.id != user.org_id)} />
+              showOrgsMini && <OrgsMiniList orgs={userOrgs.filter(org => org.id != user?.org_id)} />
             }
 
 

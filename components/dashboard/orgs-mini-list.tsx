@@ -8,9 +8,9 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function OrgsMiniList(userOrgs: any) {
+export default function OrgsMiniList(userOrgs: any, user: any) {
 
-
+  console.log
   const { OrgSwitchModal, setShowOrgSwitchModal, setFocusOrgSwitchModal } = useOrgSwitchModal();
 
   return (
@@ -21,8 +21,10 @@ export default function OrgsMiniList(userOrgs: any) {
        />
       <div>
 
-        {userOrgs && userOrgs.orgs.length == 0 && <> non </>}
-        {userOrgs && userOrgs.orgs.length > 0 && <>
+
+        {userOrgs && userOrgs?.orgs?.length == 0 && <> You aren't assigned to any other organisations.</>}
+
+        {(userOrgs && userOrgs?.orgs?.length > 1) ||  (userOrgs && userOrgs?.orgs?.length > 0 && ! user?.org_id ) && <>
 
 
           <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
