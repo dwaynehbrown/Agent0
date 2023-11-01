@@ -9,6 +9,9 @@ export async function GET(
 
   const jwt = require('jsonwebtoken');
   console.log('-----------------------------')
+  console.log('------------ user orgs --------------')
+  console.log (req?.headers.get('authorization'))
+
   let userSub = jwt.decode(req?.headers.get('authorization').split(" ")[1]).sub;
   // console.log('user/oranisations ', userSub);
 
@@ -38,6 +41,10 @@ export async function GET(
       authorization: `Bearer ${a0MagementToken}`
     }
   });
+
+  console.log ('------------------------------')
+  console.log ('get user orgs ', userSub);
+  console.log ('get user orgs', userOrgs.status, userOrgs.data);
 
   return NextResponse.json(
     userOrgs.data, { status: 200 }

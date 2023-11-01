@@ -3,8 +3,8 @@ import { CheckIcon, HandThumbUpIcon, UserIcon } from '@heroicons/react/20/solid'
 const timeline = [
   {
     id: 1,
-    content: 'Applied to',
-    target: 'Front End Developer',
+    content: 'Dev focus',
+    target: 'Front End Layout',
     href: '#',
     date: 'Sep 20',
     datetime: '2020-09-20',

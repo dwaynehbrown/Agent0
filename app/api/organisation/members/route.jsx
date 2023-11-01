@@ -8,7 +8,7 @@ export async function GET(
 ) {
 
   const jwt = require('jsonwebtoken');
-  console.log('-----------------------------')
+  console.log('-------- org members------------')
   let org_id = jwt.decode(req?.headers.get('authorization').split(" ")[1]).org_id;
   
   // get management token
@@ -30,15 +30,14 @@ export async function GET(
 
   let a0MagementToken = m2m.data?.access_token;
 
-  let orgConnections = await axios.get(`${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/organizations/${org_id}/enabled_connections`, {
+  let userOrg = await axios.get(`${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/organizations/${org_id}/members`, {
     headers: {
       authorization: `Bearer ${a0MagementToken}`
     }
   });
-  console.log ('orgConnections ', orgConnections)
   
   return NextResponse.json(
-    orgConnections.data, { status: 200 }
+    userOrg.data, { status: 200 }
   )
 
 }

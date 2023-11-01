@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: "/github",
-        destination: "https://github.com/steven-tey/precedent",
+        destination: "https://github.com/dwaynehbrown/Agent0",
         permanent: false,
       },
     ];
@@ -27,7 +27,19 @@ const nextConfig = {
         hostname: '*.googleusercontent.com',
         port: '',
         pathname: '**',
-      },
+      },      
+      {
+        protocol: 'https',
+        hostname: '*.figma.com',
+        port: '',
+        pathname: '**',
+      },      
+      {
+        protocol: 'https',
+        hostname: '*.gstatic.com',
+        port: '',
+        pathname: '**',
+      }
     ],
   },
 

@@ -1,14 +1,3 @@
-import {
-  ChartBarSquareIcon,
-  Cog6ToothIcon,
-  FolderIcon,
-  GlobeAltIcon,
-  ServerIcon,
-  SignalIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-
-
 import { getSession, getAccessToken } from '@auth0/nextjs-auth0';
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
@@ -17,33 +6,12 @@ import Header from '@/components/shared/header'
 
 import axios from "axios";
 
-const navigation = [
-  { name: 'Business', href: '#', icon: FolderIcon, current: true },
-  { name: 'Authentication', href: '#', icon: ServerIcon, current: false },
-  { name: 'Roles', href: '#', icon: SignalIcon, current: false },
-  { name: 'User Management', href: '#', icon: GlobeAltIcon, current: false },
-  // { name: 'Usage', href: '#', icon: ChartBarSquareIcon, current: false },
-  // { name: 'Settings', href: '#', icon: Cog6ToothIcon, current: true },
-]
-const teams = [
-  { id: 1, name: 'Planetaria', href: '#', initial: 'P', current: false },
-  { id: 2, name: 'Protocol', href: '#', initial: 'P', current: false },
-  { id: 3, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-]
-const secondaryNavigation = [
-  { name: 'Account', href: '#', current: true },
-  { name: 'Notifications', href: '#', current: false },
-  { name: 'Billing', href: '#', current: false },
-  { name: 'Teams', href: '#', current: false },
-  { name: 'Integrations', href: '#', current: false },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default async function Business() {
-
 
   const { user } = await getSession();
 
@@ -64,7 +32,7 @@ export default async function Business() {
       const token = await getAccessToken();
  
       if (token?.accessToken) {
-        let getUserOrg = await axios.get('http://localhost:3000/api/organisation/', {
+        let getUserOrg = await axios.get(`${process.env.AUTH0_BASE_URL}/api/organisation/`, {
           headers: {
             authorization: 'Bearer ' + token?.accessToken
           }
@@ -151,6 +119,26 @@ export default async function Business() {
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="www.example.com"
                           value={userOrg?.display_name}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="sm:col-span-4">
+                    <label htmlFor="DisplayName" className="block text-sm font-medium leading-6 text-gray-900">
+                      Id
+                    </label>
+                    <div className="mt-2">
+                      <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">&nbsp;</span>
+                        <input
+                          type="text"
+                          name="Id"
+                          id="Id"
+                          className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        
+                          value={userOrg?.id}
+                          disabled
                         />
                       </div>
                     </div>
