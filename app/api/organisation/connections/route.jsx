@@ -30,14 +30,15 @@ export async function GET(
 
   let a0MagementToken = m2m.data?.access_token;
 
-  let userOrg = await axios.get(`${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/organizations/${org_id}/enabled_connections`, {
+  let orgConnections = await axios.get(`${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/organizations/${org_id}/enabled_connections`, {
     headers: {
       authorization: `Bearer ${a0MagementToken}`
     }
   });
+  console.log ('orgConnections ', orgConnections)
   
   return NextResponse.json(
-    userOrg.data, { status: 200 }
+    orgConnections.data, { status: 200 }
   )
 
 }

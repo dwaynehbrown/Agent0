@@ -21,6 +21,7 @@ import {
 import OrgsMiniList from "@/components/dashboard/orgs-mini-list";
 import { access } from "fs";
 import axios from "axios";
+import { DEPLOY_URL } from "@/lib/constants";
 export default withPageAuthRequired(async function Dashboard() {
 
   function classNames(...classes) {
@@ -45,7 +46,7 @@ export default withPageAuthRequired(async function Dashboard() {
       console.log('fe ', token.accessToken)
 
       if (token?.accessToken) {
-        let getUserOrgs = await axios.get('http://localhost:3000/api/user/organisations/', {
+        let getUserOrgs = await axios.get(`${process.env.AUTH0_BASE_URL}/api/user/organisations/`, {
           headers: {
             authorization: 'Bearer ' + token?.accessToken
           }
@@ -99,12 +100,43 @@ export default withPageAuthRequired(async function Dashboard() {
 
             </p>
           </a>
+
         </div>}
 
         <p
           className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 md:text-xl"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
+          <Balancer>
+            <span><a
+              className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+              href={DEPLOY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                className="h-4 w-4 group-hover:text-black"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 4L20 20H4L12 4Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <p>Deploy to Vercel</p>
+            </a>
+            </span>
+
+            <span><a href="https://app.netlify.com/start/deploy?repository=https://github.com/dwaynehbrown/Agent0">
+              <Image src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" width="150" height="90" />
+</a>
+            </span>
+          </Balancer>
           <Balancer>
             <span className="hidden sm:inline-block">Having trouble?</span>
             <span className="font-semibold">&nbsp;Get help</span>
@@ -167,7 +199,7 @@ export default withPageAuthRequired(async function Dashboard() {
               </>
             }
             {
-              showOrgsMini && <OrgsMiniList orgs={userOrgs.filter(org => org.id != user?.org_id)}  />
+              showOrgsMini && <OrgsMiniList orgs={userOrgs.filter(org => org.id != user?.org_id)} />
             }
 
 

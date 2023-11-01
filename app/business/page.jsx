@@ -32,7 +32,7 @@ export default async function Business() {
       const token = await getAccessToken();
  
       if (token?.accessToken) {
-        let getUserOrg = await axios.get('http://localhost:3000/api/organisation/', {
+        let getUserOrg = await axios.get(`${process.env.AUTH0_BASE_URL}/api/organisation/`, {
           headers: {
             authorization: 'Bearer ' + token?.accessToken
           }

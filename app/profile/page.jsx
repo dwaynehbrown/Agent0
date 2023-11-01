@@ -45,7 +45,7 @@ export default withPageAuthRequired(async function Dashboard() {
       console.log('fe ', token.accessToken)
 
       if (token?.accessToken) {
-        let getUserOrgs = await axios.get('http://localhost:3000/api/user/organisations/', {
+        let getUserOrgs = await axios.get(`${process.env.AUTH0_BASE_URL}/api/user/organisations/`, {
           headers: {
             authorization: 'Bearer ' + token?.accessToken
           }
