@@ -81,7 +81,7 @@ export default withPageAuthRequired(async function Dashboard() {
           <Balancer user={{ ...user }}>Welcome, {user.name}</Balancer>
         </h1>
 
-        <div
+        {user && user?.org_id && <div
           className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
@@ -99,7 +99,7 @@ export default withPageAuthRequired(async function Dashboard() {
 
             </p>
           </a>
-        </div>
+        </div>}
 
         <p
           className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 md:text-xl"
@@ -150,7 +150,7 @@ export default withPageAuthRequired(async function Dashboard() {
           }
 
           <div className="mt-4 flex">
-            {(userOrgs && userOrgs.length > 0)  && <>
+            {(userOrgs && userOrgs?.length > 0) && <>
               <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
                 You also have access to the following Organisations
                 <span aria-hidden="true"> &rarr;</span>
@@ -167,7 +167,7 @@ export default withPageAuthRequired(async function Dashboard() {
               </>
             }
             {
-              showOrgsMini && <OrgsMiniList orgs={userOrgs.filter(org => org.id != user?.org_id)} />
+              showOrgsMini && <OrgsMiniList orgs={userOrgs.filter(org => org.id != user?.org_id)}  />
             }
 
 

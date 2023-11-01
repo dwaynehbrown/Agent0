@@ -1,4 +1,4 @@
-"use client";
+
 import {
   ChartBarSquareIcon,
   Cog6ToothIcon,
@@ -11,46 +11,98 @@ import {
 
 
 
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Header from '@/components/shared/header'
-import ConnectionsList from '@/components/connections/connections-list';
-import ConnectionsEmpty from '@/components/connections/connections-empty';
-import ConnectionsSubheader from '@/components/connections/connections-subheader';
 import UsersList from '@/components/users/users-list';
 import UsersInvitesList from '@/components/users/users-invites-list';
-import UsersEmpty from '@/components/users/users-empty';
 
-const navigation = [
-  { name: 'Business', href: '#', icon: FolderIcon, current: true },
-  { name: 'Connections', href: '#', icon: ServerIcon, current: false },
-  { name: 'Roles', href: '#', icon: SignalIcon, current: false },
-  { name: 'User Management', href: '#', icon: GlobeAltIcon, current: false },
-  // { name: 'Usage', href: '#', icon: ChartBarSquareIcon, current: false },
-  // { name: 'Settings', href: '#', icon: Cog6ToothIcon, current: true },
-]
-const teams = [
-  { id: 1, name: 'Planetaria', href: '#', initial: 'P', current: false },
-  { id: 2, name: 'Protocol', href: '#', initial: 'P', current: false },
-  { id: 3, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-]
-const secondaryNavigation = [
-  { name: 'Account', href: '#', current: true },
-  { name: 'Notifications', href: '#', current: false },
-  { name: 'Billing', href: '#', current: false },
-  { name: 'Teams', href: '#', current: false },
-  { name: 'Integrations', href: '#', current: false },
-]
+import { getSession, getAccessToken } from '@auth0/nextjs-auth0';
+
+import axios from "axios";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Connections() {
+export default async function Users() {
+
+  const { user } = await getSession();
+
+  const token = await getAccessToken();
+
+  let orgMembers = [];
+  let orgInvites = [];
+  let userOrg = {};
+
+  if (!user) {
+
+    console.log('no session');
+
+  } else {
+
+    console.log(user);
+
+
+    try {
+      if (token?.accessToken) {
+        let getUserOrg = await axios.get('http://localhost:3000/api/organisation/', {
+          headers: {
+            authorization: 'Bearer ' + token?.accessToken
+          }
+        })
+
+        // console.log ('got user orgs ',JSON.stringify( getUserOrg.data));
+        console.log(userOrg = { ...getUserOrg.data });
+      }
+
+
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+
+      const token = await getAccessToken();
+
+      if (token?.accessToken) {
+        let getOrgInvites = await axios.get('http://localhost:3000/api/organisation/invitations', {
+          headers: {
+            authorization: 'Bearer ' + token?.accessToken
+          }
+        })
+
+        // console.log ('got user orgs ',JSON.stringify( getOrgInvites.data));
+        console.log(orgInvites = [...getOrgInvites.data]);
+
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+
+      const token = await getAccessToken();
+
+      if (token?.accessToken) {
+        let getOrgMembers = await axios.get('http://localhost:3000/api/organisation/members', {
+          headers: {
+            authorization: 'Bearer ' + token?.accessToken
+          }
+        })
+
+        // console.log ('got user orgs ',JSON.stringify( getOrgMembers.data));
+        console.log(orgMembers = [ ...getOrgMembers.data ]);
+
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
 
   const ctx = {
-    org: 'Orgx'
+    org: userOrg?.display_name || 'Orgx'
   }
+
 
   return (
     <>
@@ -59,22 +111,22 @@ export default function Connections() {
 
         <div className="animate-fade-up space-y-10 divide-y divide-gray-900/10">
           <Header
-          userOrg={ctx.org}
+            userOrg={ctx.org}
             heading="Your Users"
             crumbs={[{
               title: ctx.org,
               href: '#',
               current: false
-            },{
+            }, {
               title: 'Users',
               href: '/users',
               current: true
             }]}
           />
 
-          <UsersInvitesList />
+          <UsersInvitesList data={orgInvites} />
 
-          <UsersList />
+          <UsersList data={orgMembers} />
 
         </div>
       </div>

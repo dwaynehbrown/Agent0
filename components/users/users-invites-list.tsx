@@ -69,12 +69,15 @@ function classNames(...classes : any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function UsersInvitesList() {
+export default function UsersInvitesList(data: any) {
+
+console.log ('inn ', data.data);
+
   return (
     <>
       <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">Member Invites</h1>
+            <h1 className="text-base font-semibold leading-6 text-gray-900">Member Invites ({data?.data && data?.data.length })</h1>
             <p className="mt-2 text-sm text-gray-700">
               A list of all the invitations in your organisation including their name, title, email and role.
             </p>

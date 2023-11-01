@@ -70,12 +70,14 @@ function classNames(...classes : any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function UsersInvitesList() {
+export default function UserMembersList( data: any) {
+
+  console.log ('mem ', data)
   return (
     <>
       <div className="sm:flex sm:items-center pt-8">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">Organisation Members</h1>
+            <h1 className="text-base font-semibold leading-6 text-gray-900">Organisation Members ({data?.data && data?.data.length })</h1>
             <p className="mt-2 text-sm text-gray-700">
               A list of all the invitations in your organisation including their name, title, email and role.
             </p>
@@ -85,7 +87,6 @@ export default function UsersInvitesList() {
         </div>
 
         <UsersEmpty />
-
         
         </>
   )

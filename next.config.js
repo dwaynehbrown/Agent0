@@ -27,7 +27,19 @@ const nextConfig = {
         hostname: '*.googleusercontent.com',
         port: '',
         pathname: '**',
-      },
+      },      
+      {
+        protocol: 'https',
+        hostname: '*.figma.com',
+        port: '',
+        pathname: '**',
+      },      
+      {
+        protocol: 'https',
+        hostname: '*.gstatic.com',
+        port: '',
+        pathname: '**',
+      }
     ],
   },
 
