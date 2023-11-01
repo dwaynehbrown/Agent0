@@ -1,29 +1,20 @@
-
-import {
-  ChartBarSquareIcon,
-  Cog6ToothIcon,
-  FolderIcon,
-  GlobeAltIcon,
-  ServerIcon,
-  SignalIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-
-
-
 import Header from '@/components/shared/header'
 import UsersList from '@/components/users/users-list';
 import UsersInvitesList from '@/components/users/users-invites-list';
 
 import { getSession, getAccessToken } from '@auth0/nextjs-auth0';
 
+import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+
 import axios from "axios";
 
-function classNames(...classes: any) {
+
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default async function Users() {
+export default async function Business() {
 
   const { user } = await getSession();
 

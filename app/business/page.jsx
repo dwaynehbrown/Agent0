@@ -13,7 +13,6 @@ function classNames(...classes) {
 
 export default async function Business() {
 
-
   const { user } = await getSession();
 
   const token = await getAccessToken();
