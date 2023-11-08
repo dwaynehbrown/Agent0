@@ -1,56 +1,26 @@
-import { CheckIcon, HandThumbUpIcon, UserIcon } from '@heroicons/react/20/solid'
+import { CheckCircleIcon, CodeBracketIcon, } from '@heroicons/react/20/solid'
 
 const timeline = [
   {
-    id: 1,
-    content: 'Dev focus',
-    target: 'Front End Layout',
-    href: '#',
-    date: 'Sep 20',
-    datetime: '2020-09-20',
-    icon: UserIcon,
-    iconBackground: 'bg-gray-400',
-  },
-  {
     id: 2,
-    content: 'Advanced to phone screening by',
-    target: 'Bethany Blake',
+    content: 'Inital data population',
+    target: 'in development',
     href: '#',
-    date: 'Sep 22',
-    datetime: '2020-09-22',
-    icon: HandThumbUpIcon,
+    date: 'Nov 23',
+    datetime: '2023-11-24',
+    icon: CodeBracketIcon,
     iconBackground: 'bg-blue-500',
   },
   {
-    id: 3,
-    content: 'Completed phone screening with',
-    target: 'Martha Gardner',
+    id: 1,
+    content: 'Intial Layout',
+    target: 'complete',
     href: '#',
-    date: 'Sep 28',
-    datetime: '2020-09-28',
-    icon: CheckIcon,
-    iconBackground: 'bg-green-500',
-  },
-  {
-    id: 4,
-    content: 'Advanced to interview by',
-    target: 'Bethany Blake',
-    href: '#',
-    date: 'Sep 30',
-    datetime: '2020-09-30',
-    icon: HandThumbUpIcon,
-    iconBackground: 'bg-blue-500',
-  },
-  {
-    id: 5,
-    content: 'Completed interview with',
-    target: 'Katherine Snyder',
-    href: '#',
-    date: 'Oct 4',
-    datetime: '2020-10-04',
-    icon: CheckIcon,
-    iconBackground: 'bg-green-500',
-  },
+    date: 'Nov 8',
+    datetime: '2023-11-08',
+    icon: CheckCircleIcon,
+    iconBackground: 'bg-green-400',
+  }
 ]
 
 function classNames(...classes) {
@@ -61,6 +31,7 @@ export default function Changelog() {
   return (
     <div className="flow-root">
       <h2>Changelog</h2>
+      <div className="mt-5"></div>
       <ul role="list" className="-mb-8">
         {timeline.map((event, eventIdx) => (
           <li key={event.id}>
@@ -97,6 +68,7 @@ export default function Changelog() {
           </li>
         ))}
       </ul>
+      <div className="mt-5"></div>
     </div>
   )
 }

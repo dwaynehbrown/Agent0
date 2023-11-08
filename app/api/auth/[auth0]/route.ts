@@ -17,7 +17,6 @@ export const GET = handleAuth({
             organization_name
         };
 
-
         if (org && org.indexOf('org_') > -1) authorizationParams.organization = org;
 
         console.log('sp ---- ', searchParams);
