@@ -225,7 +225,7 @@ export default async function Business() {
           <div className="animate-fade-up ">
 
             <div>
-              {orgConnections.length == 0 && <Empty />}
+              {orgConnections.length == 0 && <ConnectionsEmpty />}
               {orgConnections.length > 0 && <>
                 <div className="mt-8 flow-root">
                   <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
