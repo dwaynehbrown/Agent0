@@ -1,10 +1,10 @@
-<a href="https://precedent.dev">
+<a href="https://agent0.dwayne.fun">
   <img alt="Precedent – Building blocks for your Next project" src="https://agent0.dwayne.fun/cover.png">
-  <h1 align="center">Precedent</h1>
+  <h1 align="center">Agent0</h1>
 </a>
 
 <p align="center">
-  Building blocks for your Next project
+  Delegate Administration for Auth0 Organizations
 </p>
 
 <p align="center">
@@ -26,7 +26,7 @@
 
 ## Introduction
 
-Precedent is an opinionated collection of components, hooks, and utilities for your Next.js project.
+Let your customers manage their Organisations, Connections, login experience, user memberships, roles and much more.
 
 ## One-click Deploy
 
@@ -47,13 +47,13 @@ https://user-images.githubusercontent.com/28986134/212368288-12f41e37-aa8c-4e0a-
 ### Frameworks
 
 - [Next.js](https://nextjs.org/) – React framework for building performant apps with the best developer experience
-- [Auth.js](https://authjs.dev/) – Handle user authentication with ease with providers like Google, Twitter, GitHub, etc.
-- [Prisma](https://www.prisma.io/) – Typescript-first ORM for Node.js
+- [Auth0](https://authjs.dev/) – Handle user authentication with ease with providers like Google, Twitter, GitHub, etc.
+<!-- - [Prisma](https://www.prisma.io/) – Typescript-first ORM for Node.js -->
 
 ### Platforms
 
 - [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
-- [Vercel Postgres](https://vercel.com/postgres) – Serverless Postgres at the Edge
+- [Auth0](https://auth0.com/postgres) – Identity
 
 ### UI
 
@@ -86,5 +86,6 @@ https://user-images.githubusercontent.com/28986134/212368288-12f41e37-aa8c-4e0a-
 - [Vercel Analytics](https://vercel.com/analytics) – Track unique visitors, pageviews, and more in a privacy-friendly way
 
 ## Author
+- Dwayne Brown ([dwaynehbrown](https://github.com/dwaynehbrown))
 
-- Steven Tey ([@steventey](https://twitter.com/steventey))
+- Special thanks to Steven Tey ([@steventey](https://twitter.com/steventey)) for ([Precedent](https://github.com/steven-tey/precedent))

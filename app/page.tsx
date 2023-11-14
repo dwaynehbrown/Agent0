@@ -9,6 +9,7 @@ import { nFormatter } from "@/lib/utils";
 
 import { getSession } from '@auth0/nextjs-auth0';
 import Changelog from "./changelog/page";
+import DeployButtons from "@/components/shared/deployButtons";
 
 export default async function Home() {
 
@@ -48,7 +49,7 @@ export default async function Home() {
 return (
   <>
     {!user && (<>
-      <div className="z-10 w-full max-w-xl px-5 xl:px-0">
+      <div className="z-10 w-full max-w-xl px-5 xl:px-0 pt-20">
 
         <a
           href="https://twitter.com/steventey/status/1613928948915920896"
@@ -73,45 +74,8 @@ return (
             Let your customers manage their own identities all by themselves.
           </Balancer>
         </p>
-        {/* <div
-            className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
-            style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
-          >
-            <a
-              className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-              href={DEPLOY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                className="h-4 w-4 group-hover:text-black"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 4L20 20H4L12 4Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <p>Deploy to Vercel</p>
-            </a>
-            <a
-              className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
-              href="https://github.com/steven-tey/precedent"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github />
-              <p>
-                <span className="hidden sm:inline-block">Star on</span> GitHub{" "}
-                <span className="font-semibold">{nFormatter(stars)}</span>
-              </p>
-            </a>
-          </div> */}
+        
+        <DeployButtons />
       </div>
 
       <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
